@@ -133,6 +133,16 @@ namespace Maro_MVP {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bg2 {
+            get {
+                object obj = ResourceManager.GetObject("bg2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Brick_Tut_Add_3_4 {
             get {
                 object obj = ResourceManager.GetObject("Brick_Tut_Add_3_4", resourceCulture);
@@ -306,16 +316,6 @@ namespace Maro_MVP {
         internal static System.Drawing.Bitmap reject1 {
             get {
                 object obj = ResourceManager.GetObject("reject1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap shattered_moon {
-            get {
-                object obj = ResourceManager.GetObject("shattered_moon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

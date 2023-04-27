@@ -189,6 +189,11 @@
     <Compile Include="Presenters\Mapper Presenters\EditColumnOrRowPresenter.cs" />
     <Compile Include="Presenters\Mapper Presenters\MapperMainPresenter.cs" />
     <Compile Include="Presenters\Characters\NewFamilyNodePresenter.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Forms\Characters Forms\FrmCharactersDataGridSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,11 +259,6 @@
     <Compile Include="Model\Model Services\DateRetriever.cs" />
     <Compile Include="Model\Exceptions\TimeoutConnectionException.cs" />
     <Compile Include="Presenters\Characters\CharacterSheetPresenter.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Views\Controls\XpProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -314,6 +314,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\XpProgressBar.resx">
@@ -372,9 +373,6 @@
     <None Include="Resources\reject.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\shattered_moon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\third-gender.png" />
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +420,7 @@
   <ItemGroup>
     <Content Include="cantr.ico" />
     <Content Include="favicon.ico" />
+    <None Include="Resources\bg2.jpg" />
     <None Include="Resources\getimg.jpg" />
   </ItemGroup>
   <ItemGroup>

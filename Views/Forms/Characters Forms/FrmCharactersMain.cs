@@ -25,8 +25,7 @@ namespace Views
             criteriaEventArgs = new SearchCriteriaEventArgs();
 
             _charPresenter = new CharactersMainPresenter(this, repository);
-            LoadFile.Invoke(this, EventArgs.Empty);
-            DrawTable.Invoke(this, 0);
+            DisableAll();
             UpdateInfo();
         }
 
@@ -99,26 +98,35 @@ namespace Views
             UpdateInfo();
         }
 
+        //------------------
 
         private void btn_SaveToHtmlSpecial_Click(object sender, EventArgs e)
         {
             SaveTableToHtmlFileWithSelection.Invoke(this, EventArgs.Empty);
         }
 
+        //------------------
+
         private void btn_SaveToHtml_Click(object sender, EventArgs e)
         {
             SaveTableToHtmlFile.Invoke(this, EventArgs.Empty);
         }
+
+        //------------------
 
         private void btn_NewDB_Click(object sender, EventArgs e)
         {
             CreateDB.Invoke(this, EventArgs.Empty);
         }
 
+        //------------------
+
         private void btn_ViewMap_Click(object sender, EventArgs e)
         {
             ViewMap.Invoke(this, EventArgs.Empty);
         }
+
+        //------------------
 
         void Btn_CalcAgeAllClick(object sender, EventArgs e)
         {
@@ -131,8 +139,7 @@ namespace Views
         //-----------------------------------------------------
         //------------------ [ EVENTS ]
         //-----------------------------------------------------
-
-        //------------------
+        
 
         private void FrmCharactersMain_Load(object sender, EventArgs e)
         {
@@ -171,6 +178,8 @@ namespace Views
             }
         }
 
+        //------------------
+
         public void DisableAll()
         {
             btn_AddCharacter.Enabled = false;
@@ -178,7 +187,10 @@ namespace Views
             btn_ClearList.Enabled = false;
             btn_ManageLocations.Enabled = false;
             btn_SaveToHtmlSpecial.Enabled = false;
+            btn_SaveToHtml.Enabled = false;
         }
+
+        //------------------
 
         public void EnableAll()
         {
@@ -187,6 +199,7 @@ namespace Views
             btn_ClearList.Enabled = true;
             btn_ManageLocations.Enabled = true;
             btn_SaveToHtmlSpecial.Enabled = true;
+            btn_SaveToHtml.Enabled = true;
         }
 
         //------------------
@@ -207,6 +220,7 @@ namespace Views
             }
         }
 
+        //------------------
         private void FrmCharactersMain_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -215,18 +229,7 @@ namespace Views
             }
         }
 
-        public event EventHandler AddCharacter;
-        public event EventHandler<int> RemoveCharacter;
-        public event EventHandler LoadFile;
-        public event EventHandler Clear;
-        public event EventHandler UpdateAmountOfCharacters;
-        public event EventHandler<Action<string>> CalculateCharsAge;
-        public event EventHandler SaveTableToHtmlFile;
-        public event EventHandler SaveTableToHtmlFileWithSelection;
-        public event EventHandler CreateDB;
-        public event EventHandler ViewMap;
-        public event EventHandler<int> DrawTable;
-        public event EventHandler<SearchCriteriaEventArgs> SearchCriteria;
+        //------------------
 
         private void txtBox_Search_TextChanged(object sender, EventArgs e)
         {
@@ -253,5 +256,18 @@ namespace Views
 
             SearchCriteria.Invoke(this, criteriaEventArgs);
         }
+
+        public event EventHandler AddCharacter;
+        public event EventHandler<int> RemoveCharacter;
+        public event EventHandler LoadFile;
+        public event EventHandler Clear;
+        public event EventHandler UpdateAmountOfCharacters;
+        public event EventHandler<Action<string>> CalculateCharsAge;
+        public event EventHandler SaveTableToHtmlFile;
+        public event EventHandler SaveTableToHtmlFileWithSelection;
+        public event EventHandler CreateDB;
+        public event EventHandler ViewMap;
+        public event EventHandler<int> DrawTable;
+        public event EventHandler<SearchCriteriaEventArgs> SearchCriteria;
     }
 }

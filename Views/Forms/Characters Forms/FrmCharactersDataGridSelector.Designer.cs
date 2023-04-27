@@ -73,8 +73,9 @@
             this.ClientSize = new System.Drawing.Size(1097, 729);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_SaveToHtml);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmCharactersDataGridSelector";
-            this.Text = "FrmCharactersDataGridSelector";
+            this.Text = "Data Grid Selector";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

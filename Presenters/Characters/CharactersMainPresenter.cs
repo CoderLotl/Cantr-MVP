@@ -108,7 +108,13 @@ namespace Presenter
 
             _iCharacters.SearchCriteria += (e, o) =>
             {
-                _tableService.SearchChars(o, this, _iCharacters.DataGridView);
+                if(_repository.Characters != null)
+                {
+                    if(_repository.Characters.Count > 0)
+                    {
+                        _tableService.SearchChars(o, this, _iCharacters.DataGridView);
+                    }
+                }                
             };
         }
 

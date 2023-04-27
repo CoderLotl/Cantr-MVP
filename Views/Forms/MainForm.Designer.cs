@@ -1,12 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: 107
- * Date: 11/9/2022
- * Time: 13:53
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-namespace Views
+﻿namespace Views
 {
     partial class MainForm
     {
@@ -161,8 +153,9 @@ namespace Views
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.DarkOrange;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(318, 597);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(175, 20);
@@ -185,8 +178,8 @@ namespace Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::Maro_MVP.Resources.shattered_moon;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BackgroundImage = global::Maro_MVP.Resources.bg2;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(698, 652);
             this.Controls.Add(this.lbl_MaroDate);
             this.Controls.Add(this.label2);
