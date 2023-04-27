@@ -1,12 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data;
 using Model;
 using Presenter;
-using Data;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Views
 {

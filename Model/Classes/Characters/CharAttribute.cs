@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
     public class CharAttribute
     {
@@ -22,7 +16,7 @@ namespace Model
             //EMPTY CONSTRUCTOR NEEDED FOR SERIALIZATION
         }
 
-        public string Attribute { get{ return attribute;	} set{ attribute = value; } }
-        public int Points { get{  return points;	} set{ points = value; }	}
+        public string Attribute { get { return attribute; } set { attribute = value; } }
+        public int Points { get { return points; } set { points = value; } }
     }
 }

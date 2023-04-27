@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Model
 {
@@ -12,9 +8,9 @@ namespace Model
 
         public void SyncLocations(Location location, List<Character> characters)
         {
-            foreach(Character character in characters)
+            foreach (Character character in characters)
             {
-                if(character.SeenAt == location.Id)
+                if (character.SeenAt == location.Id)
                 {
                     character.SeenAt = 0;
                 }
@@ -23,9 +19,9 @@ namespace Model
 
         public void SyncContinents(Continent continent, List<Location> locations)
         {
-            foreach(Location location in locations)
+            foreach (Location location in locations)
             {
-                if(location.ContinentID == continent.Id)
+                if (location.ContinentID == continent.Id)
                 {
                     location.ContinentID = 0;
                 }

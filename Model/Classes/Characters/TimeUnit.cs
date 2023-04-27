@@ -16,22 +16,28 @@ namespace Model
 
         public TimeUnit()
         {
-			//EMPTY CONSTRUCTOR. NEEDED FOR SERIALIZATION.
+            //EMPTY CONSTRUCTOR. NEEDED FOR SERIALIZATION.
         }
 
-        public string Year {
-        	get{ return year;	} set{ year = value; }
+        public string Year
+        {
+            get { return year; }
+            set { year = value; }
         }
-        public string Day {
-        	get{ return day;	} set{ day = value; }
+        public string Day
+        {
+            get { return day; }
+            set { day = value; }
         }
-        public string Hour {
-        	get{ return hour;	} set{ hour = value; }
+        public string Hour
+        {
+            get { return hour; }
+            set { hour = value; }
         }
-        
-		public override string ToString()
-		{
-			return this.year + " / " + this.day + " / " + this.hour;
-		}
+
+        public override string ToString()
+        {
+            return this.year + " / " + this.day + " / " + this.hour;
+        }
     }
 }

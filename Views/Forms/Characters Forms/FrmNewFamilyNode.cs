@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Views;
-using Model;
+﻿using Model;
 using Presenter;
+using System;
+using System.Windows.Forms;
 
 namespace Views
 {
@@ -17,7 +9,7 @@ namespace Views
     {
         //*************************************************
 
-        readonly NewFamilyNodePresenter newFamilyNodePresenter;        
+        readonly NewFamilyNodePresenter newFamilyNodePresenter;
 
         //*************************************************
 
@@ -45,7 +37,7 @@ namespace Views
         }
         private void btn_Accept_Click(object sender, EventArgs e)
         {
-            if(comboBox1.Text != "" && comboBox2.Text != "")
+            if (comboBox1.Text != "" && comboBox2.Text != "")
             {
                 newFamilyNodePresenter.EventArgs.Character = (Character)comboBox1.SelectedItem;
                 newFamilyNodePresenter.EventArgs.Tie = comboBox2.Text;

@@ -1,17 +1,15 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Linq;
+﻿using Maro_MVP;
 using System.Drawing;
-using Maro_MVP;
+using System.Windows.Forms;
 
 namespace Model
 {
-	public class ImagePicker : IImagePicker
+    public class ImagePicker : IImagePicker
     {
         public ImagePicker() { }
 
         public void ImagePickerMain(string argType, string arg, Control control)
-        {            
+        {
             switch (argType)
             {
                 case "Gender":
@@ -33,7 +31,7 @@ namespace Model
         {
             Image image = null;
 
-            switch(arg)
+            switch (arg)
             {
                 case "Male":
                     image = (Image)Resources.ResourceManager.GetObject("mars");
@@ -45,14 +43,14 @@ namespace Model
                     image = (Image)Resources.ResourceManager.GetObject("third_gender");
                     break;
             }
-            control.BackgroundImage = image;            
+            control.BackgroundImage = image;
         }
 
         private void RacePicker(string arg, Control control)
         {
             Image image = null;
 
-            switch(arg)
+            switch (arg)
             {
                 case "Folk":
                     image = (Image)Resources.ResourceManager.GetObject("marosia_folk_icon");

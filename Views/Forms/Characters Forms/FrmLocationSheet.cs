@@ -2,33 +2,25 @@
 using Model;
 using Presenters;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Views
 {
     public partial class FrmLocationSheet : Form, ILocationSheet
     {
-        LocationSheetPresenter presenter;        
-        
+        LocationSheetPresenter presenter;
+
         public FrmLocationSheet(DataAccess dataAccess, IRepository repository, int opt, Location location)
         {
             InitializeComponent();
-            presenter = new LocationSheetPresenter(this, dataAccess, repository, opt, location);            
+            presenter = new LocationSheetPresenter(this, dataAccess, repository, opt, location);
             Load.Invoke(this, EventArgs.Empty);
         }
 
-        public string LocationName { get => txtBox_Name.Text ; set => txtBox_Name.Text = value; }
+        public string LocationName { get => txtBox_Name.Text; set => txtBox_Name.Text = value; }
         public ComboBox Continent { get => CmbBox_Continent; set => CmbBox_Continent = value; }
         public string Description { get => rchTxtBox_Description.Text; set => rchTxtBox_Description.Text = value; }
-        public Button BtnAccept {   get => btn_Accept; set => btn_Accept= value; }
+        public Button BtnAccept { get => btn_Accept; set => btn_Accept = value; }
 
         private void txtBox_Name_TextChanged(object sender, EventArgs e)
         {

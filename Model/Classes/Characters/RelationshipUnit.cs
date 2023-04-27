@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-
-namespace Model
-{    
+﻿namespace Model
+{
     public class RelationshipUnit
     {
         string tieName;
@@ -16,7 +13,7 @@ namespace Model
             this.oppositeTie = oppositeTie;
         }
 
-        public string TieName { get { return tieName; }	set { tieName = value; }	}
-        public string OppositeTie { get { return oppositeTie; }	set { oppositeTie = value; }	}
+        public string TieName { get { return tieName; } set { tieName = value; } }
+        public string OppositeTie { get { return oppositeTie; } set { oppositeTie = value; } }
     }
 }

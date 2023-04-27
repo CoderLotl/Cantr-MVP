@@ -1,11 +1,6 @@
 ﻿using Data;
 using Model;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Views;
 
 namespace Presenters
@@ -40,12 +35,14 @@ namespace Presenters
 
         public ILocationsManager LocationsManager
         {
-            get { return _locationsManager; } set { this._locationsManager = value; }
-        }        
+            get { return _locationsManager; }
+            set { this._locationsManager = value; }
+        }
 
         public IRepository Repository
         {
-            get { return _repository; } set { this._repository = value; }
+            get { return _repository; }
+            set { this._repository = value; }
         }
 
         public DataTable LocationsDataTable { get => locationsDataTable; set => locationsDataTable = value; }

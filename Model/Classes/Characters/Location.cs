@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Model
 {
@@ -13,7 +9,7 @@ namespace Model
         string locationDescription;
         int continentID;
 
-        public Location(){ }
+        public Location() { }
 
         public Location(int id, string locationName, string locationDescription, int continentID)
         {
@@ -25,19 +21,23 @@ namespace Model
 
         public int Id
         {
-        	get { return id; } set { id = value; }
+            get { return id; }
+            set { id = value; }
         }
         public string LocationName
         {
-        	get { return locationName; } set { locationName = value; }
+            get { return locationName; }
+            set { locationName = value; }
         }
         public string LocationDescription
         {
-        	get { return locationDescription; } set { locationDescription = value; }
+            get { return locationDescription; }
+            set { locationDescription = value; }
         }
         public int ContinentID
         {
-        	get { return continentID; } set { continentID = value; }
+            get { return continentID; }
+            set { continentID = value; }
         }
 
         public override string ToString()
@@ -50,9 +50,9 @@ namespace Model
             string continentStr = "";
             bool found = false;
 
-            foreach(Continent continent in continents)
+            foreach (Continent continent in continents)
             {
-                if(continent.Id == this.continentID)
+                if (continent.Id == this.continentID)
                 {
                     continentStr = continent.ContinentName;
                     found = true;
@@ -60,7 +60,7 @@ namespace Model
                 }
             }
 
-            if(found == false)
+            if (found == false)
             {
                 continentStr = "NOT SET";
             }
@@ -72,9 +72,9 @@ namespace Model
         {
             int maxId = 0;
 
-            foreach(Location location in locations)
+            foreach (Location location in locations)
             {
-                if(location.id > maxId)
+                if (location.id > maxId)
                 {
                     maxId = location.id;
                 }

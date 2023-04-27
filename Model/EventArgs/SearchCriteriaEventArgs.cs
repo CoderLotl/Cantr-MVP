@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -24,11 +20,13 @@ namespace Model
 
         public string Criteria
         {
-        	get { return criteria; } set { criteria = value; }
+            get { return criteria; }
+            set { criteria = value; }
         }
         public string Value
         {
-        	get { return critValue; } set { this.critValue = value; }
+            get { return critValue; }
+            set { this.critValue = value; }
         }
     }
 }

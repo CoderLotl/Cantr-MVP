@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Model
 {
@@ -14,7 +10,7 @@ namespace Model
             {
                 return 0;
             }
-            return co.Id.GetHashCode()+co.Tie.GetHashCode();
+            return co.Id.GetHashCode() + co.Tie.GetHashCode();
         }
 
         public bool Equals(FamilyTieNode x1, FamilyTieNode x2)

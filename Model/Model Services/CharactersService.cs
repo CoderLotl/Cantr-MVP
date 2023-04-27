@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Data;
+using Presenter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Data;
-using Presenter;
 
 namespace Model
 {
@@ -40,7 +40,7 @@ namespace Model
                                         {
                                             if (tie.TieName == originalFamilyTieNode.Tie)
                                             {
-                                                opositeFamilyTie = tie.OppositeTie;                                                
+                                                opositeFamilyTie = tie.OppositeTie;
                                                 break;
                                             }
                                         }
@@ -156,7 +156,7 @@ namespace Model
                     if (familyTieNode.Id == charToRemove.ID)
                     {
                         character.Family.Remove(familyTieNode);
-                                                
+
                         _dataAccess.DeleteFamilyTieNode(familyTieNode, character.ID);
                         break;
                     }
@@ -167,7 +167,7 @@ namespace Model
         public void CalcCharsAge(Action<string> message, List<Character> characters)
         {
             DateRetriever dateRetriever = new DateRetriever();
-            int _date =  dateRetriever.CurrentCantrDate;
+            int _date = dateRetriever.CurrentCantrDate;
 
             bool calcPerformed = false;
 
@@ -178,7 +178,7 @@ namespace Model
                     if (character.Birthday != 0)
                     {
                         int baseAge = 400; // It's in days.
-                        character.Age = (_date - character.Birthday + baseAge)/20;
+                        character.Age = (_date - character.Birthday + baseAge) / 20;
                         calcPerformed = true;
                     }
                 }

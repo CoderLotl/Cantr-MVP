@@ -1,34 +1,30 @@
-﻿using System;
-using System.Data;
-using System.Windows.Forms;
-using System.IO;
-using Model;
+﻿using Model;
 using Presenter;
-using System.Net;
-using System.Runtime.Remoting.Messaging;
+using System;
+using System.Windows.Forms;
 
 namespace Views
 {
-	public partial class FrmCharactersMain : Form, ICharactersMain
+    public partial class FrmCharactersMain : Form, ICharactersMain
     {
 
         //*************************************************
 
-		readonly CharactersMainPresenter _charPresenter;
-        readonly IRepository _charactersService;
+        readonly CharactersMainPresenter _charPresenter;
+        readonly IRepository _repository;
         readonly IVariables _variables;
         SearchCriteriaEventArgs criteriaEventArgs;
 
         //*************************************************
 
-        public FrmCharactersMain(IRepository charactersService, IVariables variables)
+        public FrmCharactersMain(IRepository repository, IVariables variables)
         {
             InitializeComponent();
-            _charactersService = charactersService;
+            _repository = repository;
             _variables = variables;
             criteriaEventArgs = new SearchCriteriaEventArgs();
 
-            _charPresenter = new CharactersMainPresenter(this, charactersService);            
+            _charPresenter = new CharactersMainPresenter(this, repository);
             LoadFile.Invoke(this, EventArgs.Empty);
             DrawTable.Invoke(this, 0);
             UpdateInfo();
@@ -39,29 +35,29 @@ namespace Views
         //-----------------------------------------------------
 
         public string Lbl_Characters
-		{
-			set { lbl_CharactersCount.Text = value; }
-		}
-		
-		public string Lbl_MaroDate
-		{			
-			set { lbl_MaroDate.Text = value; }
-		}
+        {
+            set { lbl_CharactersCount.Text = value; }
+        }
+
+        public string Lbl_MaroDate
+        {
+            set { lbl_MaroDate.Text = value; }
+        }
 
         public DataGridView DataGridView
         {
-        	get { return this.dataGridView1; }
-        	set { dataGridView1 = value; }
+            get { return this.dataGridView1; }
+            set { dataGridView1 = value; }
         }
-        
+
         //-----------------------------------------------------
         //------------------ [ BUTTONS ]
         //-----------------------------------------------------
-        
+
         private void btn_AddCharacter_Click(object sender, EventArgs e)
         {
-            FrmCharacterSheet frmCharacterSheet = new FrmCharacterSheet(null, 1, _charactersService, _variables);
-            if(frmCharacterSheet.ShowDialog() == DialogResult.OK)
+            FrmCharacterSheet frmCharacterSheet = new FrmCharacterSheet(null, 1, _repository, _variables);
+            if (frmCharacterSheet.ShowDialog() == DialogResult.OK)
             {
                 DrawTable.Invoke(this, 1);
                 UpdateInfo();
@@ -72,8 +68,8 @@ namespace Views
 
         private void btn_ManageLocations_Click(object sender, EventArgs e)
         {
-            FrmLocationsManager locationsManager = new FrmLocationsManager(_charactersService, _charactersService.DataAccess);
-            if(locationsManager.ShowDialog() == DialogResult.OK)
+            FrmLocationsManager locationsManager = new FrmLocationsManager(_repository, _repository.DataAccess);
+            if (locationsManager.ShowDialog() == DialogResult.OK)
             {
                 DrawTable.Invoke(this, 1);
             }
@@ -82,22 +78,22 @@ namespace Views
         //------------------
 
         void Btn_ClearListClick(object sender, EventArgs e)
-		{			
-			DialogResult dialogResult = MessageBox.Show("Are you sure you want to clear the list of characters?\n\n" +
-			                                            "All characters are gonna be erased and this cannot be undone.", "Clear Characters List", MessageBoxButtons.YesNo);
-			
-			if(dialogResult == DialogResult.Yes)
-			{
-				Clear.Invoke(this, EventArgs.Empty);
-				DrawTable.Invoke(this, 1);
-				UpdateInfo();
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to clear the list of characters?\n\n" +
+                                                        "All characters are gonna be erased and this cannot be undone.", "Clear Characters List", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                Clear.Invoke(this, EventArgs.Empty);
+                DrawTable.Invoke(this, 1);
+                UpdateInfo();
             }
-		}
-		
-		//------------------
-		
-		void Btn_LoadClick(object sender, EventArgs e)
-		{
+        }
+
+        //------------------
+
+        void Btn_LoadClick(object sender, EventArgs e)
+        {
             LoadFile.Invoke(this, EventArgs.Empty);
             DrawTable.Invoke(this, 1);
             UpdateInfo();
@@ -142,14 +138,14 @@ namespace Views
         {
             UpdateInfo();
         }
-		
-		//------------------
-		
-		void DataGridView1CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
+
+        //------------------
+
+        void DataGridView1CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "DGV_RemoveChar")
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove this character?","Remove character",MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove this character?", "Remove character", MessageBoxButtons.YesNo);
 
                 if (dialogResult == DialogResult.Yes)
                 {
@@ -162,10 +158,10 @@ namespace Views
 
             if (dataGridView1.Columns[e.ColumnIndex].Name == "DGV_ViewChar")
             {
-                FrmCharacterSheet viewChar = new FrmCharacterSheet(_charactersService.Characters[dataGridView1.CurrentRow.Index], 2, _charactersService, _variables);
+                FrmCharacterSheet viewChar = new FrmCharacterSheet(_repository.Characters[dataGridView1.CurrentRow.Index], 2, _repository, _variables);
                 if (viewChar.ShowDialog() == DialogResult.OK)
                 {
-                    _charactersService.Characters[dataGridView1.CurrentRow.Index] = viewChar.PresenterCharacter;
+                    _repository.Characters[dataGridView1.CurrentRow.Index] = viewChar.PresenterCharacter;
                     DrawTable.Invoke(this, 1);
                 }
                 else
@@ -181,7 +177,7 @@ namespace Views
             btn_CalcAgeAll.Enabled = false;
             btn_ClearList.Enabled = false;
             btn_ManageLocations.Enabled = false;
-            btn_SaveToHtmlSpecial.Enabled = false;            
+            btn_SaveToHtmlSpecial.Enabled = false;
         }
 
         public void EnableAll()
@@ -192,37 +188,37 @@ namespace Views
             btn_ManageLocations.Enabled = true;
             btn_SaveToHtmlSpecial.Enabled = true;
         }
-		
-		//------------------
-        
+
+        //------------------
+
         private void UpdateInfo()
         {
             UpdateAmountOfCharacters.Invoke(this, EventArgs.Empty);
 
-            if (_charactersService.Characters.Count > 0)
-            {                
-                btn_ClearList.Enabled = true;                                
+            if (_repository.Characters.Count > 0)
+            {
+                btn_ClearList.Enabled = true;
                 btn_CalcAgeAll.Enabled = true;
             }
             else
-            {                
-                btn_ClearList.Enabled = false;                
+            {
+                btn_ClearList.Enabled = false;
                 btn_CalcAgeAll.Enabled = false;
             }
         }
 
         private void FrmCharactersMain_KeyDown(object sender, KeyEventArgs e)
         {
-        	if (e.KeyCode == Keys.Escape)
-        	{
-        		this.Close();
-        	}
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
-                
-		public event EventHandler AddCharacter;
+
+        public event EventHandler AddCharacter;
         public event EventHandler<int> RemoveCharacter;
-        public event EventHandler LoadFile;		
-		public event EventHandler Clear;
+        public event EventHandler LoadFile;
+        public event EventHandler Clear;
         public event EventHandler UpdateAmountOfCharacters;
         public event EventHandler<Action<string>> CalculateCharsAge;
         public event EventHandler SaveTableToHtmlFile;
@@ -244,7 +240,7 @@ namespace Views
                 criteriaEventArgs.Criteria = "Age";
                 criteriaEventArgs.Value = txtBox_Search.Text;
             }
-            else if(rdb_Language.Checked == true)
+            else if (rdb_Language.Checked == true)
             {
                 criteriaEventArgs.Criteria = "Language";
                 criteriaEventArgs.Value = txtBox_Search.Text;

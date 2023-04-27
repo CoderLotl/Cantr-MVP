@@ -1,11 +1,6 @@
 ﻿using Data;
 using Model;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Views;
 
 namespace Presenters
@@ -16,7 +11,7 @@ namespace Presenters
         DataAccess _dataAccess;
         IRepository _repository;
         bool nameChanged;
-        bool descriptionChanged;        
+        bool descriptionChanged;
         int option; // 1 for create, 0 for view
         Continent _continent;
 
@@ -26,15 +21,15 @@ namespace Presenters
             _dataAccess = dataAccess;
             _repository = repository;
             nameChanged = false;
-            descriptionChanged = false;            
+            descriptionChanged = false;
             this.option = opt;
             _continent = location;
             Subscribe();
 
-            if(option == 0)
-            {                
+            if (option == 0)
+            {
                 _continentSheet.LocationName = _continent.ContinentName;
-                _continentSheet.Description = _continent.ContinentDescription;                
+                _continentSheet.Description = _continent.ContinentDescription;
             }
             CheckDataFilled();
         }
@@ -59,12 +54,12 @@ namespace Presenters
 
         private void Accept()
         {
-            if(nameChanged == true || descriptionChanged == true)
+            if (nameChanged == true || descriptionChanged == true)
             {
                 _continent.ContinentName = _continentSheet.LocationName;
-                _continent.ContinentDescription = _continentSheet.Description;                
+                _continent.ContinentDescription = _continentSheet.Description;
 
-                if(option == 1)
+                if (option == 1)
                 {
                     _continent.Id = (_repository.Continents.Max(t => t.Id) + 1);
                     _dataAccess.InsertContinent(_continent);
@@ -79,9 +74,9 @@ namespace Presenters
 
         public void CheckContinentNameChange()
         {
-            if(option == 1)
+            if (option == 1)
             {
-                if(_continentSheet.LocationName != "")
+                if (_continentSheet.LocationName != "")
                 {
                     nameChanged = true;
                 }
@@ -92,7 +87,7 @@ namespace Presenters
             }
             else
             {
-                if(_continentSheet.LocationName != _continent.ContinentName)
+                if (_continentSheet.LocationName != _continent.ContinentName)
                 {
                     nameChanged = true;
                 }

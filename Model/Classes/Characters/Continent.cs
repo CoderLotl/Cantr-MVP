@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Model
 {
@@ -26,24 +22,27 @@ namespace Model
 
         public int Id
         {
-        	get { return id; } set { id = value; }
+            get { return id; }
+            set { id = value; }
         }
         public string ContinentName
         {
-        	get { return continentName; } set { continentName = value; }
+            get { return continentName; }
+            set { continentName = value; }
         }
         public string ContinentDescription
         {
-        	get { return continentDescription; } set { continentDescription = value; }
+            get { return continentDescription; }
+            set { continentDescription = value; }
         }
 
         public static int ContinentID(List<Continent> continents, string continentName)
         {
             int continentID = 0;
-            
-            foreach(Continent continent in continents)
+
+            foreach (Continent continent in continents)
             {
-                if(continent.ContinentName == continentName)
+                if (continent.ContinentName == continentName)
                 {
                     continentID = continent.Id;
                     break;

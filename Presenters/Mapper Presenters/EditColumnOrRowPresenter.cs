@@ -1,7 +1,5 @@
 ﻿using Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using Views;
 
@@ -35,7 +33,7 @@ namespace Presenter
             Subscribe();
         }
 
-        public int InsertAtIndex { get { return insertAtIndex;	} set { insertAtIndex = value; }	}
+        public int InsertAtIndex { get { return insertAtIndex; } set { insertAtIndex = value; } }
 
         private void Subscribe()
         {

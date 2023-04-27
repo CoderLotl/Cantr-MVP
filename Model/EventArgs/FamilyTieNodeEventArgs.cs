@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -23,7 +19,7 @@ namespace Model
             this.tie = "";
         }
 
-        public Character Character { get { return character; }	set { character = value; }	}
-        public string Tie { get { return tie; }	set { tie = value; }	}
+        public Character Character { get { return character; } set { character = value; } }
+        public string Tie { get { return tie; } set { tie = value; } }
     }
 }

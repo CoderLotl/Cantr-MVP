@@ -1,12 +1,6 @@
 ﻿using Data;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Views;
 
 namespace Model
 {
@@ -25,7 +19,7 @@ namespace Model
             this.locations = new List<Location>();
             this.continents = new List<Continent>();
             this.languages = new List<string>();
-            this.id = 0;            
+            this.id = 0;
         }
 
         public List<Character> Characters
@@ -35,29 +29,29 @@ namespace Model
         }
         public int ID
         {
-            get { return id;    }
-            set { id = value;   }
+            get { return id; }
+            set { id = value; }
         }
 
         public List<Location> Locations
         {
-        	get { return locations;	}
-        	set { locations = value; }
+            get { return locations; }
+            set { locations = value; }
         }
         public List<Location> Locations1
         {
-        	get { return locations; }
-        	set { locations = value;}
+            get { return locations; }
+            set { locations = value; }
         }
         public List<string> Languages
         {
-        	get { return languages; }
-        	set { languages = value; }
+            get { return languages; }
+            set { languages = value; }
         }
         public DataAccess DataAccess
         {
-        	get { return dataAccess; }
-        	set { dataAccess = value; }
+            get { return dataAccess; }
+            set { dataAccess = value; }
         }
 
         public List<Continent> Continents { get => continents; set => continents = value; }
@@ -86,7 +80,7 @@ namespace Model
                 }
                 open = true;
             }
-            return open;       
+            return open;
         }
 
         public void Add(Character entity)
@@ -104,7 +98,7 @@ namespace Model
             charactersService.SyncCharsAtRemoval(Characters[index], Characters);
 
             dataAccess.DeleteCharacter(Characters[index].ID);
-            
+
             Characters.RemoveAt(index);
         }
 

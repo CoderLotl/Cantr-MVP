@@ -11,7 +11,7 @@ namespace Model
 
         public JSONSerializer(string fileName, int mode)
         {
-            if(mode == 1)
+            if (mode == 1)
             {
                 path = ".\\" + fileName;
             }
@@ -19,7 +19,7 @@ namespace Model
             {
                 path = fileName;
             }
-            
+
             this.mode = mode;
         }
 
@@ -31,19 +31,19 @@ namespace Model
             string jsonFile;
             try
             {
-                if(mode == 1)
+                if (mode == 1)
                 {
                     jsonFile = File.ReadAllText(path + ".json");
                 }
                 else
                 {
                     jsonFile = File.ReadAllText(path);
-                }                
+                }
 
                 obj = JsonConvert.DeserializeObject<T>(jsonFile);
             }
             catch (Exception)
-            {                
+            {
                 return null;
             }
             return obj;
@@ -60,12 +60,12 @@ namespace Model
 
                 string json = JsonConvert.SerializeObject(objectName, options);
 
-                File.WriteAllText(path + ".json", json);                                
+                File.WriteAllText(path + ".json", json);
             }
             catch (Exception)
             {
                 throw new Exception("File inexistent.");
-            }            
+            }
         }
     }
 }

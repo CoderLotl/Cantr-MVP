@@ -2,10 +2,10 @@
 
 namespace Views
 {
-	public interface IMainView
-	{
-		string Lbl_MaroDate { set; }
-		
-		event EventHandler RetrieveData;		
-	}
+    public interface IMainView
+    {
+        string Lbl_MaroDate { set; }
+
+        event EventHandler RetrieveData;
+    }
 }

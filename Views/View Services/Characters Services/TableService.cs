@@ -2,13 +2,8 @@
 using Presenter;
 using Presenters;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Views
@@ -29,11 +24,11 @@ namespace Views
         }
 
         public string TurnTableToHtmlTable(DataView dataTable, int colspan = 9)
-        {            
+        {
             string table = "";
-            if(dataTable != null)
+            if (dataTable != null)
             {
-                string[] headers = {"Name", "Age", "Language", "Seen At", "Birth", "Death", "Gender", "Is Alive"};
+                string[] headers = { "Name", "Age", "Language", "Seen At", "Birth", "Death", "Gender", "Is Alive" };
 
                 string tdCSS = "td\r\n{\r\n    padding: 10px 4px;\r\n    background-color: rgb(84, 121, 146);\r\n}";
                 string thCSS = "th\r\n{\r\n    background-color: rgb(103, 189, 103);    \r\n}";
@@ -46,12 +41,12 @@ namespace Views
                 newTable.Columns[0].ColumnMapping = MappingType.Hidden;
                 colspan = 8;
 
-                table += "<!DOCTYPE html><html><style>table, th, td {text-align: center; } .header{ background-color: rgb(236, 147, 12);}" + tdCSS + thCSS + tableCSS +"</style><body><table style = " + '"' + "width:100%" + '"' + ">\r\n";
+                table += "<!DOCTYPE html><html><style>table, th, td {text-align: center; } .header{ background-color: rgb(236, 147, 12);}" + tdCSS + thCSS + tableCSS + "</style><body><table style = " + '"' + "width:100%" + '"' + ">\r\n";
                 table += "<thead><tr><th colspan = " + '"' + $"{colspan}" + '"' + ">Characters</th></tr><tbody><tr>\r\n";
-                
-                for(int i = 0; i < headers.Length; i++)
+
+                for (int i = 0; i < headers.Length; i++)
                 {
-                    table += $"<td class="+"header"+ $">{headers[i]}</td>\r\n";
+                    table += $"<td class=" + "header" + $">{headers[i]}</td>\r\n";
                 }
 
                 foreach (DataRow row in newTable.Rows)
@@ -59,10 +54,10 @@ namespace Views
                     table += "<tr>";
                     foreach (DataColumn column in newTable.Columns)
                     {
-                        if(column.ColumnMapping != MappingType.Hidden)
+                        if (column.ColumnMapping != MappingType.Hidden)
                         {
                             table += "<td>" + row[column.ColumnName].ToString() + "</td>\r\n";
-                        }                        
+                        }
                     }
                     table += "</tr>\r\n";
                 }
@@ -96,7 +91,7 @@ namespace Views
                 string thCSS = "th\r\n{\r\n    background-color: rgb(103, 189, 103);    \r\n}";
                 string tableCSS = "table\r\n{\r\n    border-style:solid;\r\n    width: 100%;\r\n}";
 
-                
+
                 DataTable newTable = new DataTable();
                 newTable.Columns.Add("Name", typeof(string));
                 newTable.Columns.Add("Age", typeof(int));
@@ -125,7 +120,7 @@ namespace Views
                         newTable.Rows.Add(newRow);
                     }
                 }
-                
+
                 colspan = 8;
 
                 table += "<!DOCTYPE html><html><style>table, th, td {text-align: center; } .header{ background-color: rgb(236, 147, 12);}"
@@ -155,7 +150,7 @@ namespace Views
             return table;
         }
 
-        public void DrawLocationsTable(int opt,  DataGridView dataGridView, LocationsManagerPresenter presenter)
+        public void DrawLocationsTable(int opt, DataGridView dataGridView, LocationsManagerPresenter presenter)
         {
             DataGridViewButtonColumn removeLocation = new DataGridViewButtonColumn()
             {
@@ -180,7 +175,7 @@ namespace Views
                 presenter.LocationsDataTable = null;
             }
 
-            if (presenter.LocationsDataTable== null)
+            if (presenter.LocationsDataTable == null)
             {
                 presenter.LocationsDataTable = new DataTable();
             }
@@ -190,7 +185,7 @@ namespace Views
             presenter.LocationsDataTable.Columns.Add("Description", typeof(string));
             presenter.LocationsDataTable.Columns.Add("Region", typeof(string));
 
-            foreach(Location aLocation in presenter.Repository.Locations)
+            foreach (Location aLocation in presenter.Repository.Locations)
             {
                 presenter.LocationsDataTable.Rows.Add(aLocation.Id, aLocation.LocationName,
                     aLocation.LocationDescription, aLocation.ContinentToString(presenter.Repository.Continents));
@@ -234,7 +229,7 @@ namespace Views
 
             presenter.ContinentsDataTable.Columns.Add("ID", typeof(int));
             presenter.ContinentsDataTable.Columns.Add("Name", typeof(string));
-            presenter.ContinentsDataTable.Columns.Add("Description", typeof(string));            
+            presenter.ContinentsDataTable.Columns.Add("Description", typeof(string));
 
             foreach (Continent aContinent in presenter.Repository.Continents)
             {
@@ -270,14 +265,14 @@ namespace Views
             if (opt == 1)
             {
                 dataGridView.DataSource = null;
-                dataGridView.Columns.Clear();                
+                dataGridView.Columns.Clear();
                 presenter.CharsDT = null;
             }
 
             if (presenter.CharsDT == null)
             {
                 presenter.CharsDT = new DataTable();
-            }            
+            }
 
             presenter.CharsDT.Columns.Add("ID", typeof(int));
             presenter.CharsDT.Columns.Add("Name", typeof(string));
@@ -308,12 +303,12 @@ namespace Views
             string criteria = criteriaEventArgs.Criteria;
             string query = "";
 
-            if(criteria == "Age")
+            if (criteria == "Age")
             {
                 int value2;
-                if(int.TryParse((string)value, out value2) == true)
+                if (int.TryParse((string)value, out value2) == true)
                 {
-                	query = criteriaEventArgs.Criteria + " IN " + "(" + value2 + ", " + ((int)value2 * 10) + ", " + ((int)value2 * 100) + ", " + ((int)value2 * 1000) + " )";
+                    query = criteriaEventArgs.Criteria + " IN " + "(" + value2 + ", " + ((int)value2 * 10) + ", " + ((int)value2 * 100) + ", " + ((int)value2 * 1000) + " )";
                 }
                 else
                 {
@@ -321,11 +316,11 @@ namespace Views
                 }
             }
             else
-            {                
-            	query = (criteriaEventArgs.Criteria + " LIKE '"+ value + "%'");
+            {
+                query = (criteriaEventArgs.Criteria + " LIKE '" + value + "%'");
             }
 
-            if(value != "")
+            if (value != "")
             {
                 presenter.CharsDTDV.RowFilter = query;
                 dataGridView.DataSource = presenter.CharsDTDV;

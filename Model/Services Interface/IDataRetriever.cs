@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Model
+﻿namespace Model
 {
-	public interface IDataRetriever
-	{			
-	}
+    public interface IDataRetriever
+    {
+    }
 }

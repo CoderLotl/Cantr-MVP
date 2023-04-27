@@ -1,11 +1,6 @@
 ﻿using Data;
 using Model;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Views;
 
 namespace Presenters
@@ -33,8 +28,8 @@ namespace Presenters
             _location = location;
             Subscribe();
 
-            if(option == 0)
-            {                
+            if (option == 0)
+            {
                 _locationSheet.LocationName = _location.LocationName;
                 _locationSheet.Description = _location.LocationDescription;
                 _locationSheet.Continent.Text = _location.ContinentToString(_repository.Continents);
@@ -93,18 +88,18 @@ namespace Presenters
                 {
                     continentChanged = false;
                 }
-            }            
+            }
         }
 
         private void Accept()
         {
-            if(nameChanged == true)
+            if (nameChanged == true)
             {
                 _location.LocationName = _locationSheet.LocationName;
                 _location.LocationDescription = _locationSheet.Description;
-                _location.ContinentID = Continent.ContinentID(_repository.Continents, _locationSheet.Continent.Text);                
+                _location.ContinentID = Continent.ContinentID(_repository.Continents, _locationSheet.Continent.Text);
 
-                if(option == 1)
+                if (option == 1)
                 {
                     _location.Id = (_repository.Locations.Max(t => t.Id) + 1);
                     _dataAccess.InsertLocation(_location);
@@ -120,7 +115,7 @@ namespace Presenters
         public void PopulateCombobox()
         {
             _locationSheet.Continent.Items.Add("");
-            foreach(Continent continent in _repository.Continents)
+            foreach (Continent continent in _repository.Continents)
             {
                 _locationSheet.Continent.Items.Add(continent.ContinentName);
             }
@@ -128,9 +123,9 @@ namespace Presenters
 
         public void CheckLocationNameChange()
         {
-            if(option == 1)
+            if (option == 1)
             {
-                if(_locationSheet.LocationName != "")
+                if (_locationSheet.LocationName != "")
                 {
                     nameChanged = true;
                 }
@@ -141,7 +136,7 @@ namespace Presenters
             }
             else
             {
-                if(_locationSheet.LocationName != _location.LocationName)
+                if (_locationSheet.LocationName != _location.LocationName)
                 {
                     nameChanged = true;
                 }
@@ -181,9 +176,9 @@ namespace Presenters
 
         public void CheckDataFilled()
         {
-            if(option == 1)
+            if (option == 1)
             {
-                if(nameChanged == true)
+                if (nameChanged == true)
                 {
                     _locationSheet.BtnAccept.Enabled = true;
                 }
@@ -192,9 +187,9 @@ namespace Presenters
                     _locationSheet.BtnAccept.Enabled = false;
                 }
             }
-            else if(_locationSheet.LocationName != "")
+            else if (_locationSheet.LocationName != "")
             {
-                _locationSheet.BtnAccept.Enabled = true;            
+                _locationSheet.BtnAccept.Enabled = true;
             }
             else
             {

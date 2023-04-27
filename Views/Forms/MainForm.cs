@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Net;
+﻿using Presenter;
+using System;
 using System.Windows.Forms;
-using Presenter;
 
 namespace Views
 {
@@ -18,7 +16,7 @@ namespace Views
         {
             InitializeComponent();
             presenter = new MainPresenter(this);
-            RetrieveData.Invoke(this, EventArgs.Empty);            
+            RetrieveData.Invoke(this, EventArgs.Empty);
         }
 
         //-------------------------------------------------------------------------------------
@@ -29,7 +27,7 @@ namespace Views
 
         public string Lbl_MaroDate
         {
-            get { return lbl_MaroDate.Text;  }
+            get { return lbl_MaroDate.Text; }
             set { lbl_MaroDate.Text = value; }
         }
 
@@ -47,14 +45,14 @@ namespace Views
             this.Hide();
             characters.Show();
         }
-        
+
         //------------------ [ MAPPER ]
 
         void Btn_MapperClick(object sender, EventArgs e)
-		{
-			FrmMapperMain mapperMain = new FrmMapperMain();
-			mapperMain.Show();
-		}
+        {
+            FrmMapperMain mapperMain = new FrmMapperMain();
+            mapperMain.Show();
+        }
 
         //------------------ [ OPTIONS ]
 
@@ -75,6 +73,6 @@ namespace Views
         //------------------ [ EVENTS ]
         //-----------------------------------------------------	
 
-        public event EventHandler RetrieveData;    
+        public event EventHandler RetrieveData;
     }
 }

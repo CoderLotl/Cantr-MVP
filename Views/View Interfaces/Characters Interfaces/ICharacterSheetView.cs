@@ -1,16 +1,12 @@
 ﻿using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Views
 {
     public interface ICharacterSheetView
     {
-        int Option { get; set;  }
+        int Option { get; set; }
         Character CharacterEventArgs { get; set; }
         string AuxString { get; set; }
 

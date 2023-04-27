@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Model;
 using System.Windows.Forms;
-using System.Linq;
 using Views;
-using Model;
 
 namespace Presenter
 {
@@ -25,7 +23,7 @@ namespace Presenter
             Subscribe();
         }
 
-        public FamilyTieNodeEventArgs EventArgs { get {	return eventArgs; }	set { eventArgs = value; }	}
+        public FamilyTieNodeEventArgs EventArgs { get { return eventArgs; } set { eventArgs = value; } }
 
         private void Subscribe()
         {
@@ -33,7 +31,7 @@ namespace Presenter
             {
                 CharactersComboboxPopulator familyComboboxPopulator = new CharactersComboboxPopulator(_charactersService, _characterSheetPresenter);
                 familyComboboxPopulator.PopulateCharsCmbBox((ComboBox)o);
-                
+
             };
 
             _newFamilyNodeView.PopulateRelationshipsComboBox += (e, o) =>
@@ -42,6 +40,6 @@ namespace Presenter
                 relationshipsComboboxPopulator.PopulateRelationshipsCmbBox((ComboBox)o, _variables);
             };
         }
-        
+
     }
 }

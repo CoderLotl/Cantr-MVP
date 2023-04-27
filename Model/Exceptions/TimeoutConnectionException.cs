@@ -2,10 +2,10 @@
 
 namespace Model
 {
-	public class TimeoutConnectionException : Exception
-	{
-		public TimeoutConnectionException()
-		{
-		}		
-	}
+    public class TimeoutConnectionException : Exception
+    {
+        public TimeoutConnectionException()
+        {
+        }
+    }
 }

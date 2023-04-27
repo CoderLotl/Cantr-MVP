@@ -2,13 +2,6 @@
 using Model;
 using Presenters;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Views
@@ -39,7 +32,7 @@ namespace Views
             Location newLocation = new Location();
 
             FrmLocationSheet locationSheet = new FrmLocationSheet(_dataAccess, _repository, 1, newLocation);
-            if(locationSheet.ShowDialog() == DialogResult.OK)
+            if (locationSheet.ShowDialog() == DialogResult.OK)
             {
                 DrawLocationsTable.Invoke(this, EventArgs.Empty);
             }
@@ -51,7 +44,7 @@ namespace Views
 
             Continent newContinent = new Continent();
             FrmContinentSheet continentSheet = new FrmContinentSheet(_dataAccess, _repository, 1, newContinent);
-            if(continentSheet.ShowDialog() == DialogResult.OK)
+            if (continentSheet.ShowDialog() == DialogResult.OK)
             {
                 DrawContinentsTable.Invoke(this, EventArgs.Empty);
             }
@@ -63,7 +56,7 @@ namespace Views
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove this location?", "Remove character", MessageBoxButtons.YesNo);
 
-                if(dialogResult == DialogResult.Yes)
+                if (dialogResult == DialogResult.Yes)
                 {
                     RemoveLocation.Invoke(this, dgv_Locations.CurrentRow.Index);
                     DrawLocationsTable.Invoke(this, EventArgs.Empty);

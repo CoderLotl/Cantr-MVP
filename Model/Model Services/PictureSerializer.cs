@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Model
 {
-	public class PictureSerializer : IPictureSerializer
+    public class PictureSerializer : IPictureSerializer
     {
         public Bitmap TurnStringToImage(string bitmampString)
         {
@@ -58,8 +58,8 @@ namespace Model
         }
 
         // * * * * * * * * * *
-        
-		public string UploadImageAsString(string fileName)
+
+        public string UploadImageAsString(string fileName)
         {
             string returnString = "";
 
@@ -85,10 +85,10 @@ namespace Model
 
             return returnString;
         }
-		
+
         // * * * * * * * * * *		
-		
-		public string UploadImageAsString(Bitmap bitmap)
+
+        public string UploadImageAsString(Bitmap bitmap)
         {
             string returnString = "";
 

@@ -1,13 +1,7 @@
-﻿using Abp.Domain.Entities;
-using Dapper;
+﻿using Dapper;
 using Model;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace Data
 {
@@ -17,26 +11,37 @@ namespace Data
 
         public DapperContext DapperContext
         {
-        	get { return dapperContext; }
-        	set { dapperContext = value; }
+            get { return dapperContext; }
+            set { dapperContext = value; }
         }
 
         public DataAccess(string path)
-        {            
+        {
             this.dapperContext = new DapperContext(path);
         }
 
         // - - - CHARACTERS - - -
         public void InsertCharacters(Character entity)
         {
-            using(var connection = dapperContext.GetConnection())
-            {                
+            using (var connection = dapperContext.GetConnection())
+            {
                 string query = "INSERT INTO characters (id, name, age, isAlive, description, gender, charPicture, birthday, deathday, seenAt, language) ";
                 query += "VALUES (@id, @name, @age, @isAlive, @description, @gender, @charPicture, @birthday, @deathday, @seenAt, @language)";
 
-                var parameters = new { id = entity.ID, name = entity.Name, age = entity.Age, isAlive = entity.IsAlive, description = entity.Description,
-                gender = entity.Gender, charPicture = entity.CharPicture, birthday = entity.Birthday, deathday = entity.Deathday, seenAt = entity.SeenAt,
-                language = entity.Language};
+                var parameters = new
+                {
+                    id = entity.ID,
+                    name = entity.Name,
+                    age = entity.Age,
+                    isAlive = entity.IsAlive,
+                    description = entity.Description,
+                    gender = entity.Gender,
+                    charPicture = entity.CharPicture,
+                    birthday = entity.Birthday,
+                    deathday = entity.Deathday,
+                    seenAt = entity.SeenAt,
+                    language = entity.Language
+                };
 
                 connection.Execute(query, parameters);
             }
@@ -44,15 +49,15 @@ namespace Data
 
         public List<Character> RetrieveCharacters()
         {
-            using(var connection = dapperContext.GetConnection())
+            using (var connection = dapperContext.GetConnection())
             {
                 string query = "SELECT * FROM characters ORDER BY id ASC";
                 List<Character> characters = connection.Query<Character>(query).ToList();
 
                 string familyQuery = "SELECT relatedTieId as Id, tieName as Tie FROM ties WHERE charId = @id";
-                foreach(Character character in characters)
+                foreach (Character character in characters)
                 {
-                    var parameters = new { id = character.ID};
+                    var parameters = new { id = character.ID };
                     var nodes = connection.Query<FamilyTieNode>(familyQuery, parameters);
                     character.Family = nodes.ToList();
                 }
@@ -62,7 +67,7 @@ namespace Data
 
         public Character RetrieveCharacter(int id)
         {
-            using(var connection = dapperContext.GetConnection())
+            using (var connection = dapperContext.GetConnection())
             {
                 string query = "SELECT * FROM characters WHERE id = @id";
                 var parameter = new { id = id };
@@ -75,11 +80,11 @@ namespace Data
         {
             using (var connection = dapperContext.GetConnection())
             {
-                string query = "SELECT * FROM characters where " + criteria +" = @value";
+                string query = "SELECT * FROM characters where " + criteria + " = @value";
                 var parameters = new { value = value };
                 List<Character> characters = connection.Query<Character>(query, parameters).ToList();
 
-                
+
                 string familyQuery = "SELECT relatedTieId as Id, tieName as Tie FROM ties WHERE charId = @id";
                 foreach (Character character in characters)
                 {
@@ -107,7 +112,7 @@ namespace Data
 
         public void UpdateCharacter(Character entity)
         {
-            using(var connection = dapperContext.GetConnection())
+            using (var connection = dapperContext.GetConnection())
             {
                 string query = "UPDATE characters SET name = @name, age = @age, isAlive = @isAlive, description = @description," +
                                 " gender = @gender, charPicture = @charPicture, birthday = @birthday, deathday = @deathday, seenAt = @seenAt, " +
@@ -133,7 +138,7 @@ namespace Data
         // - - - FAMILY TIE NODES - - -
         public void UpdateFamilyTieNode(FamilyTieNode node, int charID)
         {
-            using(var connection = dapperContext.GetConnection())
+            using (var connection = dapperContext.GetConnection())
             {
                 string query = "UPDATE ties SET relatedTieId = @relatedTieId, tieName = @tieName WHERE charId = @charId";
                 var parameters = new
@@ -289,7 +294,7 @@ namespace Data
                 {
                     id = location.Id,
                     continentName = location.ContinentName,
-                    continentDescription = location.ContinentDescription,                    
+                    continentDescription = location.ContinentDescription,
                 };
 
                 connection.Execute(query, parameters);
@@ -328,7 +333,7 @@ namespace Data
         {
             List<string> languages = new List<string>();
 
-            using(var connection = dapperContext.GetConnection())
+            using (var connection = dapperContext.GetConnection())
             {
                 string query = "SELECT * FROM languages";
 
